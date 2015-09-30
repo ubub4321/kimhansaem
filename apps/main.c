@@ -7,4 +7,5 @@ void main()
 	func1();
 	printf("hi\n");
 	printf("i`m hansaem\n");
+	printf("hahaha\n");
 }
