@@ -1,0 +1,188 @@
+commit ec49bf0d06da9e0281603681ca53325e6d1b2980
+Author: Kim hansaem <ubub1234@naver.com>
+Date:   Tue Sep 29 21:16:32 2015 -0700
+
+    new message added
+
+diff --git a/apps/main.c b/apps/main.c
+index bd83d9c..33723a2 100644
+--- a/apps/main.c
++++ b/apps/main.c
+@@ -3,6 +3,6 @@
+ #include "/home/ubub4321/15./15.0923/include/func2.h"
+ void main()
+ {
+-	func1();
+ 	func2();
++	func1();
+ }
+
+commit 6a67de7cff7ac451c5d661e102ae9b3756a24840
+Author: Kim hansaem <ubub1234@naver.com>
+Date:   Tue Sep 29 21:07:19 2015 -0700
+
+    my first commit
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..fccb7cf
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,5 @@
++*.o
++*.a
++*.so.*
++*.so
++main
+diff --git a/Makefile b/Makefile
+new file mode 100644
+index 0000000..2fa48d0
+--- /dev/null
++++ b/Makefile
+@@ -0,0 +1,12 @@
++DIRS =lib apps
++
++all:
++	@for d in $(DIRS);\
++	do\
++		$(MAKE) -C $$d;\
++	done
++clean:
++	@for d in $(DIRS);\
++	do\
++		$(MAKE) -C $$d clean;\
++	done
+diff --git a/apps/Makefile b/apps/Makefile
+new file mode 100644
+index 0000000..52e5400
+--- /dev/null
++++ b/apps/Makefile
+@@ -0,0 +1,4 @@
++main:
++	gcc main.c -L../lib -lfunc -o main
++	gcc main.c -I../include -o func1
++	gcc main.c -I../include -o func2
+diff --git a/apps/func1 b/apps/func1
+new file mode 100755
+index 0000000..db1e9b1
+Binary files /dev/null and b/apps/func1 differ
+diff --git a/apps/func2 b/apps/func2
+new file mode 100755
+index 0000000..db1e9b1
+Binary files /dev/null and b/apps/func2 differ
+diff --git a/apps/main.c b/apps/main.c
+new file mode 100644
+index 0000000..bd83d9c
+--- /dev/null
++++ b/apps/main.c
+@@ -0,0 +1,8 @@
++#include <stdio.h>
++#include "/home/ubub4321/15./15.0923/include/func1.h"
++#include "/home/ubub4321/15./15.0923/include/func2.h"
++void main()
++{
++	func1();
++	func2();
++}
+diff --git a/fun1.c b/fun1.c
+new file mode 100644
+index 0000000..f6c1007
+--- /dev/null
++++ b/fun1.c
+@@ -0,0 +1,6 @@
++#include <stdio.h>
++func1()
++{
++	printf("hi \n");
++	printf("fun\n");
++}
+diff --git a/fun2.c b/fun2.c
+new file mode 100644
+index 0000000..0090740
+--- /dev/null
++++ b/fun2.c
+@@ -0,0 +1,6 @@
++#include <stdio.h>
++
++func2()
++{
++	printf("hello\n");
++}
+diff --git a/include/func1.h b/include/func1.h
+new file mode 100644
+index 0000000..af3b66f
+--- /dev/null
++++ b/include/func1.h
+@@ -0,0 +1,4 @@
++func1()
++{
++	printf("HI WORLD\n");
++}
+diff --git a/include/func2.h b/include/func2.h
+new file mode 100644
+index 0000000..c50154d
+--- /dev/null
++++ b/include/func2.h
+@@ -0,0 +1,5 @@
++func2()
++{
++        printf("HELLO WORLD\n");
++}
++
+diff --git a/lib/Makefile b/lib/Makefile
+new file mode 100644
+index 0000000..0ba2740
+--- /dev/null
++++ b/lib/Makefile
+@@ -0,0 +1,13 @@
++OBJ = func1.o func2.o
++CC = gcc
++AR = ar
++CFLAGS = -g -Wall
++OUTPUT = libfunc.a
++
++$(OUTPUT): $(OBJ)
++	$(AR) rv $(OUTPUT) $(OBJ)
++%.o: %.c
++	$(CC) $(CFLAGS) -c $< -o $@
++clean:
++	rm *.o $(OUTPUT)
++
+diff --git a/lib/func1.c b/lib/func1.c
+new file mode 100644
+index 0000000..1a52543
+--- /dev/null
++++ b/lib/func1.c
+@@ -0,0 +1,6 @@
++#include<stdio.h>
++
++func1()
++{
++	printf("HI WORLD\n");
++}
+diff --git a/lib/func2.c b/lib/func2.c
+new file mode 100644
+index 0000000..6c5991d
+--- /dev/null
++++ b/lib/func2.c
+@@ -0,0 +1,6 @@
++#include <stdio.h>
++
++func2()
++{
++	printf("HELLO WORLD\n");
++}
+diff --git a/main.c b/main.c
+new file mode 100644
+index 0000000..afb3055
+--- /dev/null
++++ b/main.c
+@@ -0,0 +1,8 @@
++#include <stdio.h>
++
++void main()
++{
++	printf("calling functions\n");
++	func1();
++	func2();
++}
