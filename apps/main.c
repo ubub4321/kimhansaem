@@ -9,4 +9,5 @@ void main()
 	printf("i`m hansaem\n");
 	func2();
 	func1();
+	printf("wow");
 }
