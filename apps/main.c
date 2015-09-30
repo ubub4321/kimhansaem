@@ -6,7 +6,6 @@ void main()
 	func2();
 	func1();
 	printf("hi\n");
-	printf("i`m hansaem\n");
 	func2();
 	func1();
 	printf("wow");
