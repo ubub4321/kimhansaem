@@ -3,6 +3,6 @@
 #include "/home/ubub4321/15./15.0923/include/func2.h"
 void main()
 {
-	func1();
 	func2();
+	func1();
 }
